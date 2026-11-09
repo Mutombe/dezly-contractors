@@ -1,0 +1,100 @@
+<!--
+title: Contact | Dezly Contractors
+desc: Request a quote or book a site visit with Dezly Contractors. Call, email or WhatsApp the Harare site office.
+-->
+<main>
+
+  <section class="phero">
+    <div class="frame">
+      <img src="assets/img/aerial-home.webp" alt="Aerial view of a home surrounded by trees" width="1600" height="1200" fetchpriority="high">
+      <div class="scrim"></div>
+      <div class="container phero__in">
+        <div>
+          <nav class="crumbs t-label" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Contact</span></nav>
+          <h1 class="t-h1" data-split><span class="d">Let us talk<br><span class="hl-yellow">about your site</span></span><span class="m">Let us talk<br>about your<br><span class="hl-yellow">site</span></span></h1>
+          <p class="t-lede"><span class="d">Tell us what you are planning. We reply within one working day with next steps.</span><span class="m">We reply within one working day.</span></p>
+        </div>
+        <a class="scroll-dot glass" href="#quote" aria-label="Scroll to the quote form">{{ph:arrow-down:bold}}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact">
+      <form class="form" id="quote" data-to="info@dezlycontractors.co.zw" data-reveal>
+        <h2 class="t-h2">Request a quote</h2>
+        <p class="t-lede"><span class="d">The more you share, the closer our first estimate will be.</span><span class="m">More detail means a closer estimate.</span></p>
+        <div class="choice" role="group" aria-label="Service needed">
+          <input type="radio" name="Service" id="s1" value="Earthworks" checked><label for="s1">Earthworks</label>
+          <input type="radio" name="Service" id="s2" value="Roads"><label for="s2">Roads</label>
+          <input type="radio" name="Service" id="s3" value="Building"><label for="s3">Building</label>
+          <input type="radio" name="Service" id="s4" value="Water"><label for="s4">Water</label>
+        </div>
+        <div class="field"><label for="f-name">Full name</label><input id="f-name" name="Name" required autocomplete="name"></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="Email" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="f-phone">Phone or WhatsApp</label><input id="f-phone" name="Phone" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="f-loc">Site location</label><input id="f-loc" name="Location" placeholder="Borrowdale, Harare"></div>
+        <div class="field full"><label for="f-msg">Project details</label><textarea id="f-msg" name="Details" placeholder="Size, drawings, access, timing"></textarea></div>
+        <button class="btn btn--lg" type="submit">Send Enquiry {{ph:arrow-up-right:bold}}</button>
+        <p class="form-note" role="status">Opening your email app with the details filled in.</p>
+      </form>
+
+      <div class="info">
+        <a class="info-card" href="tel:+263771234567" data-reveal><span class="stat__ic">{{ph:phone:duotone}}</span><div><span class="t-h4">+263 77 123 4567</span><p class="t-small">Mon to Sat, 07:30 to 17:30</p></div></a>
+        <a class="info-card" href="mailto:info@dezlycontractors.co.zw" data-reveal><span class="stat__ic">{{ph:envelope-simple:duotone}}</span><div><span class="t-h4">Email the office</span><p class="t-small">Drawings and tenders welcome</p></div></a>
+        <a class="info-card" href="https://wa.me/263771234567" data-reveal><span class="stat__ic">{{ph:whatsapp-logo:duotone}}</span><div><span class="t-h4">WhatsApp us</span><p class="t-small">Send a pin and photos</p></div></a>
+        <div class="info-hq" data-reveal>
+          <span class="t-label" style="color:rgba(255,255,255,.8)">Head office</span>
+          <h3 class="t-h3">Harare, Zimbabwe</h3>
+          <p class="t-small">Visits by appointment. Site teams travel nationwide.</p>
+          <img src="assets/img/obj-cone.webp" alt="" width="400" height="400" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ground ground--paper io">
+    <div class="container">
+      <div class="head head--center" style="margin-bottom:0">
+        <div class="head__title">
+          <span class="pill pill--light" data-reveal><span class="dot"></span>Coverage</span>
+          <h2 class="t-h2" data-split>Based in Harare,<br>working nationwide</h2>
+        </div>
+        <p class="t-lede" data-reveal><span class="d">Plant and crews leave our Harare yard for sites in every province.</span><span class="m">Crews leave Harare for every province.</span></p>
+      </div>
+      <div class="map-stage">
+        <svg class="zim" viewBox="0 0 600 566" aria-hidden="true">
+          <defs>
+            <pattern id="dots2" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="4.5" cy="4.5" r="2" fill="#06050f" opacity=".2"/></pattern>
+            <clipPath id="zim-clip2"><path d="{{zim}}"/></clipPath>
+          </defs>
+          <path d="{{zim}}" fill="#fff" stroke="#06050f" stroke-opacity=".12" stroke-width="1.5"/>
+          <g clip-path="url(#zim-clip2)">
+            <rect width="600" height="566" fill="url(#dots2)"/>
+            <circle cx="458" cy="194" r="150" fill="#03b0f5" opacity=".12"/><circle cx="458" cy="194" r="80" fill="#03b0f5" opacity=".14"/>
+            <path d="M458 194L262 388M458 194L586 290M458 194L440 382M458 194L280 85M458 194L360 330M458 194L507 464M458 194L98 239" stroke="#ffc20e" stroke-width="2.5" stroke-dasharray="6 6" fill="none"/>
+          </g>
+          <g><circle cx="262" cy="388" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="586" cy="290" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="440" cy="382" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="280" cy="85" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="360" cy="330" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="507" cy="464" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="98" cy="239" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/></g>
+        </svg>
+        <a class="pin pin--hq" data-x="76.3" data-y="34.3" href="https://maps.google.com/?q=Harare" aria-label="Harare head office on Google Maps"><span class="pin__img"><img src="assets/img/logo-mark-light.png" alt="" width="160" height="180"></span><span class="pin__ring"></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="head">
+        <h2 class="t-h2" data-split>Questions we<br>get asked</h2>
+        <p class="t-lede" data-reveal><span class="d">Cannot see yours? Call or WhatsApp us and we will answer it directly.</span><span class="m">Call or WhatsApp us for anything else.</span></p>
+      </div>
+      <div class="faq" data-reveal>
+        <details open><summary>Do you visit the site before quoting? <i>{{ph:plus:bold}}</i></summary><p class="t-body"><span class="d">Yes. We check access and ground conditions first, then issue a costed scope.</span><span class="m">Yes. We check the ground, then quote.</span></p></details>
+        <details><summary><span><span class="d">Can you build from my own drawings?</span><span class="m">Can you build from my drawings?</span></span> <i>{{ph:plus:bold}}</i></summary><p class="t-body"><span class="d">Yes. We build from your consultant's drawings, or design it for you under one contract.</span><span class="m">Yes, or we design it under one contract.</span></p></details>
+        <details><summary>Do you hire out plant with operators? <i>{{ph:plus:bold}}</i></summary><p class="t-body"><span class="d">Yes. Excavators, graders, rollers and tippers, by the day or by the project.</span><span class="m">Yes. By the day or by the project.</span></p></details>
+        <details><summary>Which areas do you cover? <i>{{ph:plus:bold}}</i></summary><p class="t-body"><span class="d">We are based in Harare and send crews and plant to every province.</span><span class="m">Harare based, working in every province.</span></p></details>
+        <details><summary>How do payments work? <i>{{ph:plus:bold}}</i></summary><p class="t-body"><span class="d">Payments follow agreed milestones or monthly valuations of measured work.</span><span class="m">Agreed milestones or monthly valuations.</span></p></details>
+      </div>
+    </div>
+  </section>
+
+</main>
