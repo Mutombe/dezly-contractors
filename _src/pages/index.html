@@ -238,31 +238,28 @@ desc: Dezly Contractors builds earthworks, roads, buildings and water infrastruc
         <label><span class="t-label">Scope</span>
           <select name="scope"><option>Any scope</option><option>Design and build</option><option>Civil package</option><option>Project management</option></select>
         </label>
-        <button class="go-btn" type="submit" aria-label="Show on map">{{ph:magnifying-glass:bold}}</button>
+        <button class="go-btn" type="submit" aria-label="Search the map">{{ph:magnifying-glass:bold}}</button>
       </form>
-      <div class="map-stage">
-        <svg class="zim" viewBox="0 0 600 566" aria-hidden="true">
-          <defs>
-            <pattern id="dots" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="4.5" cy="4.5" r="1.8" fill="#06050f" opacity=".18"/></pattern>
-            <pattern id="dots-az" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="4.5" cy="4.5" r="2" fill="#03b0f5"/></pattern>
-            <clipPath id="zim-clip"><path d="{{zim}}"/></clipPath>
-            <radialGradient id="hot" cx=".76" cy=".34" r=".36"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-            <mask id="hot-mask"><rect width="600" height="566" fill="url(#hot)"/></mask>
-          </defs>
-          <path d="{{zim}}" fill="#fff" stroke="#06050f" stroke-opacity=".14" stroke-width="1.2"/>
-          <g clip-path="url(#zim-clip)">
-            <rect width="600" height="566" fill="url(#dots)"/>
-            <rect width="600" height="566" fill="url(#dots-az)" mask="url(#hot-mask)"/>
-            <path d="M262 388L360 330L368 237L458 194L586 290M360 330L440 382L507 464M458 194L280 85M262 388L98 239L46 203" stroke="#06050f" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="4 5" fill="none"/>
-          </g>
+      <p class="map-status" aria-live="polite"><span class="map-status__dot"></span><span class="map-status__txt">8 sites across 5 regions</span></p>
+      <div class="map-stage" style="aspect-ratio:{{zim-ar}}" data-hq="{{sx:Harare}},{{sy:Harare}}">
+        <svg class="zim zim--base" viewBox="{{zim-vb}}" aria-hidden="true"><path class="zim-edge" d="{{zim}}"/></svg>
+        <canvas class="zim-dots" aria-hidden="true"></canvas>
+        <svg class="zim zim--top" viewBox="{{zim-vb}}" aria-hidden="true">
+          <path class="zim-shape" d="{{zim}}"/>
+          <g class="zim-prov">{{zim-prov}}</g>
+          <g class="zim-roads">{{zim-roads}}</g>
+          <g class="zim-towns">{{zim-towns}}</g>
+          <g class="zim-plabels">{{zim-plabels}}</g>
+          <g class="zim-tlabels">{{zim-tlabels}}</g>
         </svg>
-        <button type="button" class="pin" data-x="76.3" data-y="34.3" data-sector="housing" data-region="mashonaland" data-img="assets/img/estate-aerial.webp" data-tag="Housing" data-title="Estate civil works" data-loc="Harare, Mashonaland" data-val="Design and build"><span class="pin__img"><img src="assets/img/estate-aerial.webp" alt="" width="1200" height="628"></span><span class="pin__ring"></span><span class="sr-only">Harare</span></button>
-        <button type="button" class="pin" data-x="43.7" data-y="68.6" data-sector="industrial" data-region="matabeleland" data-img="assets/img/industrial-park.webp" data-tag="Industrial" data-title="Logistics yards" data-loc="Bulawayo, Matabeleland" data-val="Civil package"><span class="pin__img"><img src="assets/img/industrial-park.webp" alt="" width="1000" height="600"></span><span class="pin__ring"></span><span class="sr-only">Bulawayo</span></button>
-        <button type="button" class="pin" data-x="60" data-y="58.3" data-sector="roads" data-region="midlands" data-img="assets/img/road-paving.webp" data-tag="Roads" data-title="Road rehabilitation" data-loc="Gweru, Midlands" data-val="Layer works, asphalt"><span class="pin__img"><img src="assets/img/road-paving.webp" alt="" width="1280" height="720"></span><span class="pin__ring"></span><span class="sr-only">Gweru</span></button>
-        <button type="button" class="pin" data-x="84.5" data-y="82" data-sector="water" data-region="masvingo" data-img="assets/img/irrigation.webp" data-tag="Water" data-title="Canal lining" data-loc="Chiredzi, Masvingo" data-val="Canals and pumps"><span class="pin__img"><img src="assets/img/irrigation.webp" alt="" width="964" height="460"></span><span class="pin__ring"></span><span class="sr-only">Chiredzi</span></button>
-        <button type="button" class="pin" data-x="95" data-y="51.2" data-sector="housing" data-region="manicaland" data-img="assets/img/hilltop-home.webp" data-tag="Residential" data-title="Hillside residence" data-loc="Mutare, Manicaland" data-val="Turnkey home"><span class="pin__img"><img src="assets/img/hilltop-home.webp" alt="" width="1800" height="1200"></span><span class="pin__ring"></span><span class="sr-only">Mutare</span></button>
-        <button type="button" class="pin" data-x="46.7" data-y="15" data-sector="earthworks" data-region="mashonaland" data-img="assets/img/quarry.webp" data-tag="Earthworks" data-title="Bulk excavation" data-loc="Kariba, Mashonaland" data-val="Plant and haulage"><span class="pin__img"><img src="assets/img/quarry.webp" alt="" width="1500" height="1004"></span><span class="pin__ring"></span><span class="sr-only">Kariba</span></button>
-        <span class="pin pin--count" data-x="16.3" data-y="42.2"><span class="pin__img num">+6</span><span class="pin__ring"></span></span>
+        <button type="button" class="pin" data-x="{{tx:Harare}}" data-y="{{ty:Harare}}" data-sector="housing" data-region="mashonaland" data-img="assets/img/estate-aerial.webp" data-tag="Housing" data-title="Estate civil works" data-loc="Harare, Mashonaland" data-val="Design and build"><span class="pin__img"><img src="assets/img/estate-aerial.webp" alt="" width="1200" height="628"></span><span class="sr-only">Harare: estate civil works</span></button>
+        <button type="button" class="pin" data-x="{{tx:Bulawayo}}" data-y="{{ty:Bulawayo}}" data-sector="industrial" data-region="matabeleland" data-img="assets/img/industrial-park.webp" data-tag="Industrial" data-title="Logistics yards" data-loc="Bulawayo, Matabeleland" data-val="Civil package"><span class="pin__img"><img src="assets/img/industrial-park.webp" alt="" width="1000" height="600"></span><span class="sr-only">Bulawayo: logistics yards</span></button>
+        <button type="button" class="pin" data-x="{{tx:Gweru}}" data-y="{{ty:Gweru}}" data-sector="roads" data-region="midlands" data-img="assets/img/road-paving.webp" data-tag="Roads" data-title="Road rehabilitation" data-loc="Gweru, Midlands" data-val="Layer works, asphalt"><span class="pin__img"><img src="assets/img/road-paving.webp" alt="" width="1280" height="720"></span><span class="sr-only">Gweru: road rehabilitation</span></button>
+        <button type="button" class="pin" data-x="{{tx:Chiredzi}}" data-y="{{ty:Chiredzi}}" data-sector="water" data-region="masvingo" data-img="assets/img/irrigation.webp" data-tag="Water" data-title="Canal lining" data-loc="Chiredzi, Masvingo" data-val="Canals and pumps"><span class="pin__img"><img src="assets/img/irrigation.webp" alt="" width="964" height="460"></span><span class="sr-only">Chiredzi: canal lining</span></button>
+        <button type="button" class="pin" data-x="{{tx:Mutare}}" data-y="{{ty:Mutare}}" data-sector="housing" data-region="manicaland" data-img="assets/img/hilltop-home.webp" data-tag="Residential" data-title="Hillside residence" data-loc="Mutare, Manicaland" data-val="Turnkey home"><span class="pin__img"><img src="assets/img/hilltop-home.webp" alt="" width="1800" height="1200"></span><span class="sr-only">Mutare: hillside residence</span></button>
+        <button type="button" class="pin" data-x="{{tx:Kariba}}" data-y="{{ty:Kariba}}" data-sector="earthworks" data-region="mashonaland" data-img="assets/img/quarry.webp" data-tag="Earthworks" data-title="Bulk excavation" data-loc="Kariba, Mashonaland" data-val="Plant and haulage"><span class="pin__img"><img src="assets/img/quarry.webp" alt="" width="1500" height="1004"></span><span class="sr-only">Kariba: bulk excavation</span></button>
+        <button type="button" class="pin" data-x="{{tx:Masvingo}}" data-y="{{ty:Masvingo}}" data-sector="water" data-region="masvingo" data-img="assets/img/dam.webp" data-tag="Water" data-title="Dam wall works" data-loc="Masvingo, Masvingo" data-val="Embankment and spillway"><span class="pin__img"><img src="assets/img/dam.webp" alt="" width="2000" height="1359"></span><span class="sr-only">Masvingo: dam wall works</span></button>
+        <button type="button" class="pin" data-x="{{tx:Hwange}}" data-y="{{ty:Hwange}}" data-sector="roads" data-region="matabeleland" data-img="assets/img/asphalt-crew.webp" data-tag="Roads" data-title="Trunk road resurfacing" data-loc="Hwange, Matabeleland" data-val="Asphalt overlay"><span class="pin__img"><img src="assets/img/asphalt-crew.webp" alt="" width="1000" height="667"></span><span class="sr-only">Hwange: trunk road resurfacing</span></button>
         <div class="map-card" aria-live="polite">
           <div class="map-card__img"><img src="assets/img/estate-aerial.webp" alt="" width="1200" height="628"><span class="tag">Housing</span></div>
           <h3 class="t-h4">Estate civil works</h3>
@@ -270,6 +267,7 @@ desc: Dezly Contractors builds earthworks, roads, buildings and water infrastruc
           <div class="row"><b>Design and build</b><a href="projects.html">View {{ph:arrow-right:bold}}</a></div>
         </div>
       </div>
+      <p class="map-credit">{{zim-credit}}</p>
     </div>
   </section>
 

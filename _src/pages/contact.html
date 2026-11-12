@@ -63,22 +63,20 @@ desc: Request a quote or book a site visit with Dezly Contractors. Call, email o
         <h2 class="t-h2" data-split>Based in Harare,<br>working nationwide</h2>
         <p class="t-lede" data-reveal><span class="d">Plant and crews leave our Harare yard for sites in every province.</span><span class="m">Crews leave Harare for every province.</span></p>
       </div>
-      <div class="map-stage">
-        <svg class="zim" viewBox="0 0 600 566" aria-hidden="true">
-          <defs>
-            <pattern id="dots2" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="4.5" cy="4.5" r="2" fill="#06050f" opacity=".2"/></pattern>
-            <clipPath id="zim-clip2"><path d="{{zim}}"/></clipPath>
-          </defs>
-          <path d="{{zim}}" fill="#fff" stroke="#06050f" stroke-opacity=".12" stroke-width="1.5"/>
-          <g clip-path="url(#zim-clip2)">
-            <rect width="600" height="566" fill="url(#dots2)"/>
-            <circle cx="458" cy="194" r="150" fill="#03b0f5" opacity=".12"/><circle cx="458" cy="194" r="80" fill="#03b0f5" opacity=".14"/>
-            <path d="M458 194L262 388M458 194L586 290M458 194L440 382M458 194L280 85M458 194L360 330M458 194L507 464M458 194L98 239" stroke="#06050f" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="4 5" fill="none"/>
-          </g>
-          <g><circle cx="262" cy="388" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="586" cy="290" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="440" cy="382" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="280" cy="85" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="360" cy="330" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="507" cy="464" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="98" cy="239" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/></g>
+      <div class="map-stage" style="aspect-ratio:{{zim-ar}}" data-hq="{{sx:Harare}},{{sy:Harare}}">
+        <svg class="zim zim--base" viewBox="{{zim-vb}}" aria-hidden="true"><path class="zim-edge" d="{{zim}}"/></svg>
+        <canvas class="zim-dots" aria-hidden="true"></canvas>
+        <svg class="zim zim--top" viewBox="{{zim-vb}}" aria-hidden="true">
+          <path class="zim-shape" d="{{zim}}"/>
+          <g class="zim-prov">{{zim-prov}}</g>
+          <path class="zim-rays" d="M{{sx:Harare}} {{sy:Harare}}L{{sx:Bulawayo}} {{sy:Bulawayo}}M{{sx:Harare}} {{sy:Harare}}L{{sx:Mutare}} {{sy:Mutare}}M{{sx:Harare}} {{sy:Harare}}L{{sx:Masvingo}} {{sy:Masvingo}}M{{sx:Harare}} {{sy:Harare}}L{{sx:Kariba}} {{sy:Kariba}}M{{sx:Harare}} {{sy:Harare}}L{{sx:Gweru}} {{sy:Gweru}}M{{sx:Harare}} {{sy:Harare}}L{{sx:Chiredzi}} {{sy:Chiredzi}}M{{sx:Harare}} {{sy:Harare}}L{{sx:Hwange}} {{sy:Hwange}}M{{sx:Harare}} {{sy:Harare}}L{{sx:Beitbridge}} {{sy:Beitbridge}}"/>
+          <g class="zim-towns">{{zim-towns}}</g>
+          <g class="zim-plabels">{{zim-plabels}}</g>
+          <g class="zim-tlabels">{{zim-tlabels}}</g>
         </svg>
-        <a class="pin pin--hq" data-x="76.3" data-y="34.3" href="https://maps.google.com/?q=Harare" aria-label="Harare head office on Google Maps"><span class="pin__img"><img src="assets/img/logo-mark-light.png" alt="" width="160" height="180"></span><span class="pin__ring"></span></a>
+        <a class="pin pin--hq" data-x="{{tx:Harare}}" data-y="{{ty:Harare}}" href="https://maps.google.com/?q=Harare" aria-label="Harare head office on Google Maps"><span class="pin__img"><img src="assets/img/logo-mark-light.png" alt="" width="160" height="180"></span></a>
       </div>
+      <p class="map-credit">{{zim-credit}}</p>
     </div>
   </section>
 

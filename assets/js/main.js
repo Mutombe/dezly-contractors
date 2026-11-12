@@ -172,10 +172,70 @@
     });
   }
 
-  /* ---------- Map ---------- */
+  /* ---------- Map: dot field with a "quantum" scan ----------
+     Dots fill the national outline. At rest a few flicker in and out at random.
+     A search sends a scan ring out from Harare; dots in its front light up, and
+     when it reaches a matching site the dots around it flicker, then settle. */
+  const dotField = (stage) => {
+    const cv = $('.zim-dots', stage), shape = $('.zim-shape', stage);
+    if (!cv || !shape) return null;
+    const vb = $('.zim--top', stage).viewBox.baseVal, VW = vb.width, VH = vb.height;
+    const [hx, hy] = (stage.dataset.hq || '0,0').split(',').map(Number);
+    const ctx = cv.getContext('2d'), outline = new Path2D(shape.getAttribute('d'));
+    const G = 7.5, dots = [];
+    for (let y = G / 2; y < VH; y += G) for (let x = G / 2; x < VW; x += G) {
+      if (!ctx.isPointInPath(outline, x, y)) continue;
+      const d = Math.hypot(x - hx, y - hy);
+      dots.push({ x, y, d, ph: Math.random() * 6.283, w: .5 + Math.random() * .9, heat: Math.max(0, 1 - d / 150), f: Math.random() < .3 });
+    }
+    let scale = 1, dpr = 1, scan = null, hits = [], raf = 0, visible = false;
+    const size = () => {
+      dpr = Math.min(devicePixelRatio || 1, 2); scale = stage.clientWidth / VW;
+      cv.width = Math.round(stage.clientWidth * dpr); cv.height = Math.round(stage.clientHeight * dpr);
+      draw(performance.now());
+    };
+    const draw = (now) => {
+      const t = now / 1000;
+      ctx.setTransform(dpr * scale, 0, 0, dpr * scale, 0, 0);
+      ctx.clearRect(0, 0, VW, VH);
+      const r = scan ? (now - scan.t0) / 1000 * scan.v : -1;
+      for (const p of dots) {
+        let a = .13 + p.heat * .55, glow = 0, gold = 0;
+        if (!reduce && p.f) glow = Math.pow(Math.max(0, Math.sin(t * p.w + p.ph)), 60) * .8;  // rare flicker
+        if (r > 0) { const k = 1 - Math.abs(p.d - r) / 26; if (k > 0) glow = Math.max(glow, k); }
+        for (const h of hits) {
+          const age = (now - h.t0) / 1000; if (age < 0) continue;
+          const dd = Math.hypot(p.x - h.x, p.y - h.y); if (dd > 44) continue;
+          const fall = 1 - dd / 44;
+          gold = Math.max(gold, age < .45 ? (Math.random() > .5 ? fall : 0) : fall * Math.max(0, 1 - (age - .45) / 2.4));
+        }
+        const rad = 1.45 + glow * 1.1 + gold * .9;
+        ctx.fillStyle = gold > .05 ? `rgba(255,194,14,${Math.min(1, .25 + gold)})` : glow > .05 ? `rgba(3,176,245,${Math.min(1, a + glow)})` : (p.heat > .02 ? `rgba(3,176,245,${a})` : `rgba(6,5,15,${a})`);
+        ctx.beginPath(); ctx.arc(p.x, p.y, rad, 0, 6.283); ctx.fill();
+      }
+      if (scan && r > scan.max + 40) scan = null;
+      hits = hits.filter(h => (now - h.t0) / 1000 < 3);
+    };
+    const loop = (now) => { draw(now); raf = visible && !reduce ? requestAnimationFrame(loop) : 0; };
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible && !raf && !reduce) raf = requestAnimationFrame(loop); }).observe(stage);
+    if ('ResizeObserver' in window) new ResizeObserver(size).observe(stage); else addEventListener('resize', size);
+    size();
+    return {
+      // Returns the delay (ms) before the ring reaches a point given in viewBox units
+      search(targets) {
+        const v = 420, now = performance.now();
+        scan = { t0: now, v, max: Math.max(...dots.map(p => p.d)) };
+        hits = targets.map(([x, y]) => ({ x, y, t0: now + Math.hypot(x - hx, y - hy) / v * 1000 }));
+        if (reduce) { scan = null; draw(now); }
+        return ([x, y]) => reduce ? 0 : Math.hypot(x - hx, y - hy) / v * 1000;
+      }
+    };
+  };
+
   $$('.map-stage').forEach(stage => {
     const pins = $$('.pin', stage), card = $('.map-card', stage);
     pins.forEach((p, k) => { p.style.left = p.dataset.x + '%'; p.style.top = p.dataset.y + '%'; p.style.setProperty('--i', k); });
+    const field = dotField(stage);
     if (!card) return;
     const img = $('.map-card__img img', card), tag = $('.tag', card), ttl = $('.t-h4', card), loc = $('.t-small', card), val = $('.row b', card);
     const real = pins.filter(p => p.dataset.title);
@@ -202,13 +262,33 @@
     pins.forEach(p => { const h = () => { clearInterval(auto); show(p); }; p.addEventListener('mouseenter', h); p.addEventListener('click', h); p.addEventListener('focus', h); });
     addEventListener('resize', place);
     show(real[0]);
-    const form = $('.searchbar');
-    if (form) form.addEventListener('submit', e => {
-      e.preventDefault();
-      const sec = form.sector.value, reg = form.region.value;
-      const m = real.find(p => (sec === 'all' || p.dataset.sector === sec) && (reg === 'all' || p.dataset.region === reg));
-      clearInterval(auto); if (m) show(m);
-    });
+    const form = $('.searchbar'), status = $('.map-status'), stxt = status && $('.map-status__txt', status);
+    const regions = (list) => new Set(list.map(p => p.dataset.region)).size;
+    const say = (txt, busy) => { if (!status) return; stxt.textContent = txt; status.classList.toggle('is-busy', !!busy); };
+    if (form) {
+      let timers = [];
+      const run = (e) => {
+        if (e) e.preventDefault();
+        clearInterval(auto); timers.forEach(clearTimeout); timers = [];
+        const sec = form.sector.value, reg = form.region.value;
+        const match = real.filter(p => (sec === 'all' || p.dataset.sector === sec) && (reg === 'all' || p.dataset.region === reg));
+        const W = stage.clientWidth, H = stage.clientHeight, s = field ? 1 / (W / $('.zim--top', stage).viewBox.baseVal.width) : 1;
+        const at = p => [parseFloat(p.dataset.x) / 100 * W * s, parseFloat(p.dataset.y) / 100 * H * s];
+        const delay = field ? field.search(match.map(at)) : () => 0;
+        pins.forEach(p => { p.classList.add('is-dim'); p.classList.remove('is-found'); });
+        say('Scanning', true);
+        card.classList.add('is-off');
+        match.forEach(p => timers.push(setTimeout(() => { p.classList.remove('is-dim'); p.classList.add('is-found'); }, delay(at(p)))));
+        const last = match.length ? Math.max(...match.map(p => delay(at(p)))) : 600;
+        timers.push(setTimeout(() => {
+          if (!match.length) { say('No sites match. Try another sector or region'); return; }
+          say(`${match.length} site${match.length > 1 ? 's' : ''} across ${regions(match)} region${regions(match) > 1 ? 's' : ''}`);
+          card.classList.remove('is-off'); show(match[0]);
+        }, last + 250));
+      };
+      form.addEventListener('submit', run);
+      $$('select', form).forEach(s => s.addEventListener('change', () => run()));
+    }
   });
 
   /* ---------- Project filter ---------- */

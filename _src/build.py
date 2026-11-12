@@ -6,7 +6,7 @@ Reads _src/pages/*.html (with a front-matter comment), wraps each in the shared
 head / header / footer partials, expands {{icon:name}} tokens and writes the
 result to the project root.
 """
-import os, re
+import json, os, re
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 SRC = os.path.join(ROOT, '_src')
@@ -45,9 +45,33 @@ def read(p):
         return f.read()
 
 
+# ---------- Map tokens (data from _src/tools/make_map.py) ----------
+# Main trunk routes, drawn town to town
+ROUTES = [['Harare', 'Chinhoyi', 'Kariba'], ['Harare', 'Kwekwe', 'Gweru', 'Bulawayo'], ['Harare', 'Marondera', 'Mutare'],
+          ['Harare', 'Masvingo', 'Beitbridge'], ['Bulawayo', 'Hwange', 'Victoria Falls'], ['Gweru', 'Masvingo', 'Chiredzi'],
+          ['Harare', 'Bindura']]
+LABELLED = ['Harare', 'Bulawayo', 'Mutare', 'Gweru', 'Masvingo', 'Victoria Falls', 'Kariba', 'Beitbridge', 'Chiredzi', 'Hwange']
+
+
+def map_tokens():
+    m = json.loads(read('partials/zim-map.json'))
+    t = m['towns']
+    prov = ''.join(f'<path d="{p["d"]}"/>' for p in m['provinces'])
+    plabels = ''.join(f'<text x="{p["x"]}" y="{p["y"]}">{p["short"]}</text>' for p in m['provinces'] if p['name'] not in ('Harare', 'Bulawayo'))
+    roads = ''.join('<polyline points="' + ' '.join(f'{t[n]["x"]},{t[n]["y"]}' for n in r) + '"/>' for r in ROUTES)
+    towns = ''.join(f'<rect x="{v["x"] - 2.5}" y="{v["y"] - 2.5}" width="5" height="5"/>' for v in t.values())
+    tlabels = ''.join(f'<text x="{t[n]["x"] + 7}" y="{t[n]["y"] + 3.5}">{n}</text>' for n in LABELLED)
+    tok = {'zim-vb': f'0 0 {m["w"]} {m["h"]}', 'zim-ar': f'{m["w"]} / {m["h"]}', 'zim': m['country'], 'zim-prov': prov,
+           'zim-plabels': plabels, 'zim-roads': roads, 'zim-towns': towns, 'zim-tlabels': tlabels, 'zim-credit': '<span class="d">' + m['credit'] + '</span><span class="m">Boundaries: geoBoundaries, CC BY 3.0 IGO</span>'}
+    for n, v in t.items():
+        tok[f'tx:{n}'], tok[f'ty:{n}'] = str(v['px']), str(v['py'])
+        tok[f'sx:{n}'], tok[f'sy:{n}'] = str(v['x']), str(v['y'])
+    return tok
+
+
 def build():
     head, header, footer = read('partials/head.html'), read('partials/header.html'), read('partials/footer.html')
-    zim = read('partials/zim-path.txt').strip()
+    mt = map_tokens()
     for name in sorted(os.listdir(os.path.join(SRC, 'pages'))):
         if not name.endswith('.html'):
             continue
@@ -62,7 +86,7 @@ def build():
                    .replace('{{desc}}', meta.get('desc', ''))
                    .replace('{{page}}', name[:-5])
                + hdr + body + footer)
-        out = out.replace('{{zim}}', zim)
+        out = re.sub(r'\{\{((?:zim[\w-]*)|(?:[ts][xy]:[\w ]+))\}\}', lambda k: mt[k.group(1)], out)
         out = re.sub(r'\{\{ph:([\w-]+)(?::(\w+))?\}\}', lambda k: phosphor(k.group(1), k.group(2) or 'regular'), out)
         out = re.sub(r'\{\{pattern:([\w-]+)\}\}', lambda k: PATTERNS[k.group(1)], out)
         with open(os.path.join(ROOT, name), 'w', encoding='utf-8', newline='\n') as f:
