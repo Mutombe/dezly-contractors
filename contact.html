@@ -23,8 +23,6 @@
 <div class="loader" aria-hidden="true">
   <div class="loader__in">
     <img class="loader__mark" src="assets/img/logo-mark-light.png" alt="" width="84" height="95">
-    <div class="loader__bar"><i></i></div>
-    <div class="loader__txt">We are the best</div>
   </div>
 </div>
 <header class="header">
@@ -32,7 +30,7 @@
     <a class="brand" href="./" aria-label="Dezly Contractors home">
       <img class="logo-dark" src="assets/img/logo-mark-dark.png" alt="" width="34" height="38">
       <img class="logo-light" src="assets/img/logo-mark-light.png" alt="" width="34" height="38">
-      <span><b>Dezly Contractors</b><small>We are the best</small></span>
+      <b>Dezly Contractors</b>
     </a>
     <nav class="nav" aria-label="Main">
         <a href="./">Home</a>
@@ -41,7 +39,7 @@
         <a href="projects.html">Projects</a>
         <a href="contact.html" aria-current="page">Contact</a>
     </nav>
-    <a class="btn header__btn" href="contact.html">Get a Quote <svg class="ph" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/></svg></a>
+    <a class="btn header__btn" href="contact.html">Get a Quote <svg class="ph" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></a>
     <a class="btn btn--sm header__quote" href="contact.html">Get a Quote</a>
     <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
       <span class="i-open"><svg class="ph" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"/></svg></span><span class="i-close"><svg class="ph" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></span>
@@ -66,18 +64,20 @@
       <div class="container phero__in">
         <div>
           <nav class="crumbs t-label" aria-label="Breadcrumb"><a href="./">Home</a><span>/</span><span>Contact</span></nav>
-          <h1 class="t-h1" data-split><span class="d">Let us talk<br><span class="hl-yellow">about your site</span></span><span class="m">Let us talk<br>about your<br><span class="hl-yellow">site</span></span></h1>
+          <h1 class="t-h1" data-split><span class="d">Let us talk<br>about your site</span><span class="m">Let us talk<br>about your<br>site</span></h1>
           <p class="t-lede"><span class="d">Tell us what you are planning. We reply within one working day with next steps.</span><span class="m">We reply within one working day.</span></p>
         </div>
-        <a class="scroll-dot glass" href="#quote" aria-label="Scroll to the quote form"><svg class="ph" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208.49,152.49l-72,72a12,12,0,0,1-17,0l-72-72a12,12,0,0,1,17-17L116,187V40a12,12,0,0,1,24,0V187l51.51-51.52a12,12,0,0,1,17,17Z"/></svg></a>
+        <a class="scroll-dot" href="#quote" aria-label="Scroll to the quote form"><svg class="ph" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208.49,152.49l-72,72a12,12,0,0,1-17,0l-72-72a12,12,0,0,1,17-17L116,187V40a12,12,0,0,1,24,0V187l51.51-51.52a12,12,0,0,1,17,17Z"/></svg></a>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="container contact">
+    <div class="container">
+      <div class="idx" data-reveal><span class="num">01</span><span>Request a quote</span></div>
+      <div class="contact">
       <form class="form" id="quote" data-to="info@dezlycontractors.co.zw" data-reveal>
-        <h2 class="t-h2">Request a quote</h2>
+        <h2 class="t-h2">Tell us about the site</h2>
         <p class="t-lede"><span class="d">The more you share, the closer our first estimate will be.</span><span class="m">More detail means a closer estimate.</span></p>
         <div class="choice" role="group" aria-label="Service needed">
           <input type="radio" name="Service" id="s1" value="Earthworks" checked><label for="s1">Earthworks</label>
@@ -95,9 +95,9 @@
       </form>
 
       <div class="info">
-        <a class="info-card" href="tel:+263771234567" data-reveal><span class="stat__ic"><svg class="ph" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M223.94,174.08A48.33,48.33,0,0,1,176,216,136,136,0,0,1,40,80,48.33,48.33,0,0,1,81.92,32.06a8,8,0,0,1,8.3,4.8l21.13,47.2a8,8,0,0,1-.66,7.53L89.32,117a7.93,7.93,0,0,0-.54,7.81c8.27,16.93,25.77,34.22,42.75,42.41a7.92,7.92,0,0,0,7.83-.59l25-21.3a8,8,0,0,1,7.59-.69l47.16,21.13A8,8,0,0,1,223.94,174.08Z" opacity="0.2"/><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></svg></span><div><span class="t-h4">+263 77 123 4567</span><p class="t-small">Mon to Sat, 07:30 to 17:30</p></div></a>
-        <a class="info-card" href="mailto:info@dezlycontractors.co.zw" data-reveal><span class="stat__ic"><svg class="ph" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,56l-96,88L32,56Z" opacity="0.2"/><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg></span><div><span class="t-h4">Email the office</span><p class="t-small">Drawings and tenders welcome</p></div></a>
-        <a class="info-card" href="https://wa.me/263771234567" data-reveal><span class="stat__ic"><svg class="ph" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,32A96,96,0,0,0,44.89,176.07L32.42,213.46a8,8,0,0,0,10.12,10.12l37.39-12.47A96,96,0,1,0,128,32Zm24,152a80,80,0,0,1-80-80,32,32,0,0,1,32-32l16,32-12.32,18.47a48.19,48.19,0,0,0,25.85,25.85L152,136l32,16A32,32,0,0,1,152,184Z" opacity="0.2"/><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.62-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"/></svg></span><div><span class="t-h4">WhatsApp us</span><p class="t-small">Send a pin and photos</p></div></a>
+        <a class="info-card" href="tel:+263771234567" data-reveal><span class="info-card__ic"><svg class="ph" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></svg></span><div><span class="t-h4">+263 77 123 4567</span><p class="t-small">Mon to Sat, 07:30 to 17:30</p></div></a>
+        <a class="info-card" href="mailto:info@dezlycontractors.co.zw" data-reveal><span class="info-card__ic"><svg class="ph" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg></span><div><span class="t-h4">Email the office</span><p class="t-small">Drawings and tenders welcome</p></div></a>
+        <a class="info-card" href="https://wa.me/263771234567" data-reveal><span class="info-card__ic"><svg class="ph" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.61-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"/></svg></span><div><span class="t-h4">WhatsApp us</span><p class="t-small">Send a pin and photos</p></div></a>
         <div class="info-hq" data-reveal>
           <span class="t-label" style="color:rgba(255,255,255,.8)">Head office</span>
           <h3 class="t-h3">Harare, Zimbabwe</h3>
@@ -105,16 +105,15 @@
           <img src="assets/img/obj-cone.webp" alt="" width="400" height="400" loading="lazy">
         </div>
       </div>
+      </div>
     </div>
   </section>
 
   <section class="ground ground--paper io">
     <div class="container">
-      <div class="head head--center" style="margin-bottom:0">
-        <div class="head__title">
-          <span class="pill pill--light" data-reveal><span class="dot"></span>Coverage</span>
-          <h2 class="t-h2" data-split>Based in Harare,<br>working nationwide</h2>
-        </div>
+      <div class="idx" data-reveal><span class="num">02</span><span>Coverage</span></div>
+      <div class="head">
+        <h2 class="t-h2" data-split>Based in Harare,<br>working nationwide</h2>
         <p class="t-lede" data-reveal><span class="d">Plant and crews leave our Harare yard for sites in every province.</span><span class="m">Crews leave Harare for every province.</span></p>
       </div>
       <div class="map-stage">
@@ -127,7 +126,7 @@
           <g clip-path="url(#zim-clip2)">
             <rect width="600" height="566" fill="url(#dots2)"/>
             <circle cx="458" cy="194" r="150" fill="#03b0f5" opacity=".12"/><circle cx="458" cy="194" r="80" fill="#03b0f5" opacity=".14"/>
-            <path d="M458 194L262 388M458 194L586 290M458 194L440 382M458 194L280 85M458 194L360 330M458 194L507 464M458 194L98 239" stroke="#ffc20e" stroke-width="2.5" stroke-dasharray="6 6" fill="none"/>
+            <path d="M458 194L262 388M458 194L586 290M458 194L440 382M458 194L280 85M458 194L360 330M458 194L507 464M458 194L98 239" stroke="#06050f" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="4 5" fill="none"/>
           </g>
           <g><circle cx="262" cy="388" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="586" cy="290" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="440" cy="382" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="280" cy="85" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="360" cy="330" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="507" cy="464" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/><circle cx="98" cy="239" r="6" fill="#fff" stroke="#06050f" stroke-width="2.5"/></g>
         </svg>
@@ -138,6 +137,7 @@
 
   <section class="section">
     <div class="container">
+      <div class="idx" data-reveal><span class="num">03</span><span>Questions</span></div>
       <div class="head">
         <h2 class="t-h2" data-split>Questions we<br>get asked</h2>
         <p class="t-lede" data-reveal><span class="d">Cannot see yours? Call or WhatsApp us and we will answer it directly.</span><span class="m">Call or WhatsApp us for anything else.</span></p>
