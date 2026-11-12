@@ -55,8 +55,8 @@ def build():
         m = re.match(r'\s*<!--(.*?)-->', src, re.S)
         meta = dict(re.findall(r'^\s*(\w+):\s*(.+?)\s*$', m.group(1), re.M)) if m else {}
         body = src[m.end():] if m else src
-        nav = '\n'.join(f'        <a href="{h}"{" aria-current=\"page\"" if h == name else ""}>{t}</a>' for h, t in NAV)
-        drawer = '\n'.join(f'    <a class="dl" href="{h}">{t}<span>0{i + 1}</span></a>' for i, (h, t) in enumerate(NAV))
+        nav = '\n'.join(f'        <a href="{"./" if h == "index.html" else h}"{" aria-current=\"page\"" if h == name else ""}>{t}</a>' for h, t in NAV)
+        drawer = '\n'.join(f'    <a class="dl" href="{"./" if h == "index.html" else h}">{t}<span>0{i + 1}</span></a>' for i, (h, t) in enumerate(NAV))
         hdr = header.replace('{{nav}}', nav).replace('{{drawer}}', drawer)
         out = (head.replace('{{title}}', meta.get('title', 'Dezly Contractors'))
                    .replace('{{desc}}', meta.get('desc', ''))
